@@ -1,4 +1,4 @@
-import MainSlider from "@/components/MainSlider";
+import { MainSlider } from "@/components";
 
 export default function Home() {
   return (
