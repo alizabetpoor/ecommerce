@@ -10,3 +10,7 @@
 html{
     box-sizing: border-box;
 }
+
+input{
+    outline: 0!important;
+}
