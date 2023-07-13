@@ -6,3 +6,7 @@
     font-family: "iranSans";
     src: url("../../public/fonts/IranianSans.ttf");
 }
+
+html{
+    box-sizing: border-box;
+}

@@ -1,5 +1,6 @@
-import Providers from "@/redux/provider";
 import type { Metadata } from "next";
+import Providers from "@/redux/provider";
+import { Header } from "@/components";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,8 +15,13 @@ export default function RootLayout({
 }) {
   return (
     <Providers>
-      <html lang="fa">
-        <body className="font-iranSans">{children}</body>
+      <html dir="rtl" lang="fa">
+        <body className="font-iranSans bg-gray-100">
+          <header>
+            <Header />
+          </header>
+          <main>{children}</main>
+        </body>
       </html>
     </Providers>
   );
