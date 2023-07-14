@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Providers from "@/redux/provider";
+import { Providers } from "@/redux/provider";
 import { Header } from "@/components";
 import "./globals.css";
 
@@ -14,15 +14,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <Providers>
-      <html dir="rtl" lang="fa">
-        <body className="font-iranSans bg-gray-100">
+    <html dir="rtl" lang="fa">
+      <body
+        suppressHydrationWarning={true}
+        className="font-iranSans bg-gray-100"
+      >
+        <Providers>
           <header>
             <Header />
           </header>
           <main>{children}</main>
-        </body>
-      </html>
-    </Providers>
+        </Providers>
+      </body>
+    </html>
   );
 }
