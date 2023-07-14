@@ -3,18 +3,15 @@ import { Fragment } from "react";
 import Product from "@/components/Product";
 import makeTextShorter from "@/utils/makeTextShorter";
 import {
-  ProductListProps,
   ProductListType,
   ProductType,
 } from "@/interface/Component/ProductList";
 
-export default async function ProductList({
-  numberOfCols = 3,
-}: ProductListProps) {
+export default async function ProductList() {
   const products: ProductListType = await getData();
   return (
     <div
-      className={`grid grid-cols-${numberOfCols} w-full bg-white rounded-lg text-gray-600 divide-y divide-y-reverse`}
+      className={`grid grid-cols-3 w-full bg-white rounded-lg text-gray-600 divide-y divide-y-reverse`}
     >
       {products.map((product: ProductType, index: number) => {
         return (

@@ -1,7 +1,3 @@
-export interface ProductListProps {
-  numberOfCols?: number;
-}
-
 export interface ProductListType {
   products: ProductType[];
 }
