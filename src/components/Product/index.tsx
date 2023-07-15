@@ -7,6 +7,7 @@ import { addToCart } from "@/redux/features/cartSlice";
 import makeTextShorter from "@/utils/makeTextShorter";
 import { ProductProps } from "@/interface/Component/Product";
 import Rate from "@/components/Product/Rate";
+import { AddToCart } from "@/components";
 
 export default function Product({ productDetail }: ProductProps) {
   const dispatch = useDispatch();
@@ -17,7 +18,7 @@ export default function Product({ productDetail }: ProductProps) {
     >
       <Rate rate={productDetail.rating.rate} />
       <Link
-        href={`/product/${productDetail.id}`}
+        href={`/products/${productDetail.id}`}
         className="w-3/6 h-[200px] relative self-center"
       >
         <Image
@@ -29,24 +30,14 @@ export default function Product({ productDetail }: ProductProps) {
         />
       </Link>
       <Link
-        href={`/product/${productDetail.id}`}
+        href={`/products/${productDetail.id}`}
         dir="ltr"
         title={productDetail.title}
         className="mt-8 h-16 font-semibold self-end"
       >
         {makeTextShorter(productDetail.title, 70)}
       </Link>
-      <div className="flex justify-between items-center mt-6 self-stretch">
-        <span className="text text-gray-800 text-sm sm:text-base">
-          قیمت:{productDetail.price} تومان
-        </span>
-        <button
-          onClick={() => dispatch(addToCart(productDetail))}
-          className="rounded-lg text-sm sm:text-base bg-green-600 border border-green-600 text-gray-50 px-2 lg:px-6 py-2"
-        >
-          افزودن به سبد
-        </button>
-      </div>
+      <AddToCart productDetail={productDetail} />
     </div>
   );
 }
