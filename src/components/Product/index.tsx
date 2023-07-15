@@ -39,7 +39,7 @@ export default function Product({ productDetail }: ProductProps) {
         </span>
         <button
           onClick={() => dispatch(addToCart(productDetail))}
-          className="rounded-lg bg-green-600 border border-green-600 text-gray-50 px-6 py-2"
+          className="rounded-lg bg-green-600 border border-green-600 text-gray-50 px-2 lg:px-6 py-2"
         >
           افزودن به سبد
         </button>
