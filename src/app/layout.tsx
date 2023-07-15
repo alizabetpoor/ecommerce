@@ -20,7 +20,7 @@ export default function RootLayout({
         className="font-iranSans bg-gray-100"
       >
         <Providers>
-          <header>
+          <header className="sticky top-0 z-10">
             <Header />
           </header>
           <main>{children}</main>
