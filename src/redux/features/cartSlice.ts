@@ -18,12 +18,64 @@ export const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action: PayloadAction<ProductType>) => {
       const newProduct = action.payload;
-      state.products.push(newProduct);
+      if (state.products.length !== 0) {
+        const indexProduct = state.products.findIndex(
+          (product) => product.id === newProduct.id
+        );
+        if (indexProduct === -1) {
+          state.products.push({ ...newProduct, count: 1 });
+        } else {
+          state.products[indexProduct].count =
+            state.products[indexProduct].count + 1;
+        }
+      } else {
+        state.products.push({ ...newProduct, count: 1 });
+      }
+      localStorage.setItem("products", JSON.stringify(state.products));
+    },
+    increaseCount: (state, action: PayloadAction<number>) => {
+      const productId = action.payload;
+      const indexProduct = state.products.findIndex(
+        (product) => product.id === productId
+      );
+      state.products[indexProduct].count =
+        state.products[indexProduct].count + 1;
+      localStorage.setItem("products", JSON.stringify(state.products));
+    },
+    decreaseCount: (state, action: PayloadAction<number>) => {
+      const productId = action.payload;
+      const indexProduct = state.products.findIndex(
+        (product) => product.id === productId
+      );
+      if (state.products[indexProduct].count === 1) {
+        const newProducts = state.products.filter(
+          (product) => product.id !== productId
+        );
+        state.products = newProducts;
+      } else {
+        state.products[indexProduct].count =
+          state.products[indexProduct].count - 1;
+      }
+      localStorage.setItem("products", JSON.stringify(state.products));
+    },
+    deleteProductFromCart: (state, action: PayloadAction<number>) => {
+      const productId = action.payload;
+
+      const newProducts = state.products.filter(
+        (product) => product.id !== productId
+      );
+      state.products = newProducts;
+
       localStorage.setItem("products", JSON.stringify(state.products));
     },
   },
 });
 
-export const { addToCart } = cartSlice.actions;
+export const {
+  addToCart,
+  increaseCount,
+  decreaseCount,
+  deleteProductFromCart,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;
