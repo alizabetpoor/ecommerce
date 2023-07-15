@@ -13,14 +13,10 @@ export default async function ProductList() {
     <div
       className={`grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 w-full bg-white rounded-lg text-gray-600 divide-y divide-y-reverse`}
     >
-      {products.map((product: ProductType, index: number) => {
+      {products.map((product: ProductType) => {
         return (
           <Fragment key={product.id}>
-            <Product
-              productDetail={product}
-              index={index}
-              productsLength={products.length}
-            />
+            <Product productDetail={product} />
           </Fragment>
         );
       })}
