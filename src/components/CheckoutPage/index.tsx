@@ -16,6 +16,8 @@ export default function CheckoutPage() {
   const [mapValidation, setMapValidation] = useState<boolean>(false);
   const router = useRouter();
   const dispatch = useDispatch();
+  let neshanMap;
+  let setMarkInMap;
   const productCount = useSelector((state) => state.cart.products.length);
   const onSubmitHandler = (data: object) => {
     if (addressCordinate !== null) {
@@ -27,6 +29,8 @@ export default function CheckoutPage() {
 
   useEffect(() => {
     if (productCount === 0 || !productCount) router.push("/products");
+
+    return () => neshanMap.removeEventListener("click", setMarkInMap);
   }, []);
 
   return (
@@ -50,14 +54,16 @@ export default function CheckoutPage() {
           }}
           style={{ width: "100%" }}
           onInit={(L, myMap) => {
+            neshanMap = myMap;
             let marker = L.marker([0, 0])
-              .addTo(myMap)
+              .addTo(neshanMap)
               .bindPopup("آدرس تحویل بار");
-            myMap.on("click", function (e) {
+            setMarkInMap = (e) => {
               marker.setLatLng(e.latlng);
               setAddressCordinate(e.latlng);
               console.log(e.latlng);
-            });
+            };
+            neshanMap.addEventListener("click", setMarkInMap);
           }}
         />
       </div>
