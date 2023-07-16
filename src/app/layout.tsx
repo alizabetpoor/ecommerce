@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import { ToastContainer } from "react-toastify";
 import { Providers } from "@/redux/provider";
 import { Header } from "@/components";
 import "./globals.css";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -20,7 +22,8 @@ export default function RootLayout({
         className="font-iranSans bg-gray-100"
       >
         <Providers>
-          <header className="sticky top-0 z-10">
+          <ToastContainer />
+          <header className="sticky top-0 z-20">
             <Header />
           </header>
           <main>{children}</main>

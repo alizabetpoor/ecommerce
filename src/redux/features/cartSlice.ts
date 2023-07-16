@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 import {
   ProductListType,
   ProductType,
@@ -31,6 +32,16 @@ export const cartSlice = createSlice({
       } else {
         state.products.push({ ...newProduct, count: 1 });
       }
+      toast.success("محصول به سبد خرید اضافه شد", {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       localStorage.setItem("products", JSON.stringify(state.products));
     },
     increaseCount: (state, action: PayloadAction<number>) => {
@@ -52,6 +63,16 @@ export const cartSlice = createSlice({
           (product) => product.id !== productId
         );
         state.products = newProducts;
+        toast.info("محصول از سبد خرید حذف شد", {
+          position: "top-right",
+          autoClose: 4000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+        });
       } else {
         state.products[indexProduct].count =
           state.products[indexProduct].count - 1;
@@ -65,8 +86,22 @@ export const cartSlice = createSlice({
         (product) => product.id !== productId
       );
       state.products = newProducts;
-
+      toast.info("محصول از سبد خرید حذف شد", {
+        position: "top-right",
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
       localStorage.setItem("products", JSON.stringify(state.products));
+    },
+    buy: (state) => {
+      state.products = [];
+
+      localStorage.removeItem("products");
     },
   },
 });
@@ -76,6 +111,7 @@ export const {
   increaseCount,
   decreaseCount,
   deleteProductFromCart,
+  buy,
 } = cartSlice.actions;
 
 export default cartSlice.reducer;
