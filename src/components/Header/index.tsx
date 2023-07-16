@@ -17,8 +17,15 @@ export default function Header() {
   return (
     <nav className="h-20 py-[10px] px-6 bg-gray-800 w-full flex justify-between">
       <div className="flex gap-x-4 items-center">
-        <Image src={logo} width={50} height={50} alt="ecommerce logo" />
-        <span className="text-gray-50 sm:text-xl">فروشگاه</span>
+        <Link href="/">
+          <Image src={logo} width={50} height={50} alt="ecommerce logo" />
+        </Link>
+        <Link
+          href="/products"
+          className="text-gray-50 text-sm sm:text-xl bg-gray-600 px-4 rounded-lg py-2"
+        >
+          محصولات
+        </Link>
       </div>
       <div className="flex gap-x-2 items-center">
         <Link
