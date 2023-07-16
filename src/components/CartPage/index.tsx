@@ -30,9 +30,12 @@ export default function CartPage() {
           <div className="flex flex-col divide-y-2 p-4 bg-white">
             {products.map((productDetail) => {
               return (
-                <div key={productDetail.id} className="flex gap-x-4 py-4">
-                  <div className="w-3/12 border border-gray-300 rounded-lg px-[80px] py-4 bg-white">
-                    <div className="w-full h-[200px] relative self-center">
+                <div
+                  key={productDetail.id}
+                  className="flex gap-x-4 py-4 md:flex-row flex-col"
+                >
+                  <div className="w-full px-[20px] sm:px-[80px] md:w-4/12 xl:w-3/12 border border-gray-300 rounded-lg md:px-[40px] py-4 bg-white">
+                    <div className="w-full h-[250px] md:h-[200px] relative self-center">
                       <Image
                         src={productDetail.image}
                         fill={true}
@@ -43,9 +46,9 @@ export default function CartPage() {
                     </div>
                   </div>
 
-                  <div className="w-9/12 flex flex-col justify-between">
+                  <div className="w-full text-sm sm:text-base mt-10 md:mt-0 md:w-8/12 xl:w-9/12 flex flex-col gap-y-8 justify-between">
                     <span>{productDetail.title}</span>
-                    <div className="flex justify-between">
+                    <div className="flex justify-between flex-wrap gap-y-4">
                       <span>
                         قیمت:{productDetail.price * productDetail.count} تومان
                       </span>
